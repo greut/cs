@@ -1,5 +1,6 @@
 import asyncio
 import ssl
+from typing import Any, List  # noqa
 
 import aiohttp
 
@@ -31,7 +32,7 @@ class AIOCloudStack(CloudStack):
             handler = getattr(session, self.method)
 
             done = False
-            final_data = []
+            final_data = []  # type: List[Any]
             page = 1
             while not done:
                 if fetch_list:
