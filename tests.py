@@ -420,9 +420,9 @@ class RequestTest(TestCase):
         self.assertEqual('createNetwork', qs['command'][0])
         self.assertEqual('3', qs['signatureVersion'][0])
 
-        expires = qs['expires'][0]
+        expires_value = qs['expires'][0]
         # we ignore the timezone for Python2's lack of %z
-        expires = datetime.datetime.strptime(expires[:19],
+        expires = datetime.datetime.strptime(expires_value[:19],
                                              EXPIRES_FORMAT[:-2])
 
         self.assertTrue(expires > datetime.datetime.utcnow(), expires)

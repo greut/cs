@@ -3,12 +3,12 @@ import json
 import os
 import sys
 from collections import defaultdict
-from typing import MutableMapping  # noqa
+from typing import MutableMapping, Set  # noqa
 
 try:
     from configparser import NoSectionError
 except ImportError:  # python 2
-    from ConfigParser import NoSectionError  # type: ignore
+    from ConfigParser import NoSectionError
 
 try:
     import pygments
@@ -85,7 +85,7 @@ def main(args=None):
 
     options = parser.parse_args(args=args)
     command = options.command
-    kwargs = defaultdict(set)  # type: MutableMapping[str,set]
+    kwargs = defaultdict(set)  # type: MutableMapping[str, Set]
     for arg in options.arguments:
         key, value = arg
         kwargs[key].add(value.strip(" \"'"))

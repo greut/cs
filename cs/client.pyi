@@ -1,4 +1,5 @@
 from typing import Any, Dict, List, Optional, Union
+from requests.structures import CaseInsensitiveDict
 
 PY2: bool
 text_type = str
@@ -64,6 +65,9 @@ class CloudStack:
         expiration: Any = ...,
         trace: bool = ...,
         dangerous_no_tls_verify: bool = ...,
+        headers: Optional[CaseInsensitiveDict[str]] = ...,
+        session: Any = ...,
+        fetch_result: bool = ...,
     ) -> None:
         ...
 
@@ -76,17 +80,17 @@ class CloudStack:
         json: bool,
         opcode_name: str,
         fetch_list: bool,
-        headers: Optional[Dict],
+        headers: Optional[CaseInsensitiveDict[str]] = ...,
         **params: Any
-    ) -> Union[Dict, List[Dict]]:
+    ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
         ...
 
     def _jobresult(
         self,
         jobid: str,
         json: bool,
-        headers: Optional[Dict]
-    ) -> Dict:
+        headers: Optional[CaseInsensitiveDict[str]] = ...,
+    ) -> Dict[str, Any]:
         ...
 
 
